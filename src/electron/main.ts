@@ -2,13 +2,14 @@ import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import { updateElectronApp, UpdateSourceType } from 'update-electron-app';
+import Logger from 'electron-log';
 
 updateElectronApp({
   updateSource: {
     type: UpdateSourceType.ElectronPublicUpdateService,
     repo: 'rhy3h/crazyrickbot-app'
   },
-  logger: require('electron-log')
+  logger: Logger
 });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.

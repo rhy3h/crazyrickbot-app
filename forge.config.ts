@@ -5,13 +5,37 @@ import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
 
+import packageJSON from './package.json'
+
+const name = packageJSON.productName
+const version = packageJSON.version
+
+const copyright = `Copyright (c) 2025 ${name}. All rights reserved.`
+
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    name: name,
+    appCopyright: copyright,
+    buildVersion: version,
+    appVersion: version,
+    win32metadata: {
+      CompanyName: name,
+      FileDescription: name,
+      ProductName: name
+    }
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}),
+    new MakerSquirrel({
+      setupExe: `${name}Setup-x64-${version}.exe`,
+      name: name,
+      version,
+      authors: name,
+      owners: name,
+      copyright,
+      description: `${name} Setup`
+    }),
     new MakerZIP({}, ['win32'])
   ],
   plugins: [
