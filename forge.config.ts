@@ -38,6 +38,18 @@ const config: ForgeConfig = {
     }),
     new MakerZIP({}, ['win32'])
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'rhy3h',
+          name: 'crazyrickbot-app'
+        },
+        prerelease: true
+      }
+    }
+  ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
