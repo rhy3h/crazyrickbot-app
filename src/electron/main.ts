@@ -4,6 +4,8 @@ import started from 'electron-squirrel-startup'
 import { updateElectronApp, UpdateSourceType } from 'update-electron-app'
 import Logger from 'electron-log'
 
+import { TwitchLoginWindow } from './jsm/window/TwitchLoginWindow'
+
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string
 declare const MAIN_WINDOW_VITE_NAME: string
 
@@ -39,6 +41,11 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  const onLogin = (code: string) => {
+    console.log(code)
+  }
+  new TwitchLoginWindow(onLogin)
 }
 
 // This method will be called when Electron has finished
