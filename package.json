@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --config eslint.config.ts"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.6.1",
@@ -19,15 +19,19 @@
     "@electron-forge/plugin-fuses": "^7.6.1",
     "@electron-forge/plugin-vite": "^7.6.1",
     "@electron/fuses": "^1.8.0",
+    "@eslint/js": "^9.20.0",
     "@types/electron-squirrel-startup": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-standard": "^9.0.0",
+    "@vue/eslint-config-standard-with-typescript": "^9.0.0",
+    "@vue/eslint-config-typescript": "^14.4.0",
     "electron": "34.2.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint": "^9.20.1",
+    "globals": "^15.15.0",
+    "jiti": "^2.4.2",
     "ts-node": "^10.9.2",
-    "typescript": "~4.5.4",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0",
     "vite": "^5.4.14",
     "vue": "^3.5.13"
   },
