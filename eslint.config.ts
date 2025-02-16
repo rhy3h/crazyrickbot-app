@@ -3,16 +3,17 @@ import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescri
 import { standardTypeChecked } from '@vue/eslint-config-standard-with-typescript'
 
 export default defineConfigWithVueTs(
+  pluginVue.configs['flat/essential'],
+  vueTsConfigs.recommendedTypeChecked,
+  vueTsConfigs.stylisticTypeChecked,
+  standardTypeChecked,
   {
     ignores: ['.vite']
   },
   {
     rules: {
-      '@typescript-eslint/no-floating-promises': 'off'
+      '@typescript-eslint/no-floating-promises': 'off',
+      'no-new': 'off'
     }
-  },
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommendedTypeChecked,
-  vueTsConfigs.stylisticTypeChecked,
-  standardTypeChecked
+  }
 )
