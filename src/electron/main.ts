@@ -1,8 +1,11 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'node:path'
+import fs from 'node:fs'
 import started from 'electron-squirrel-startup'
 import { updateElectronApp, UpdateSourceType } from 'update-electron-app'
 import Logger from 'electron-log'
+
+import { Store } from '@/electron/jsm/electron/Store'
 
 import { TwitchLoginWindow } from './jsm/window/TwitchLoginWindow'
 
@@ -21,6 +24,20 @@ updateElectronApp({
   },
   logger: Logger
 })
+
+function createStore () {
+  let store: Store
+
+  try {
+    store = new Store()
+  } catch {
+    const configFilePath = path.resolve(path.join(app.getPath('userData'), 'config.json'))
+    fs.unlinkSync(configFilePath)
+    store = new Store()
+  }
+
+  return store
+}
 
 const createWindow = () => {
   // Create the browser window.
@@ -41,6 +58,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  const store: Store = createStore()
 
   const onLogin = (code: string) => {
     console.log(code)
