@@ -15,7 +15,10 @@ export default defineConfigWithVueTs(
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
       'no-undef': 'off',
-      'no-new': 'off'
+      'no-new': 'off',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/require-await': 'off'
     }
   }
 )
