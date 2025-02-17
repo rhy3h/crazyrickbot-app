@@ -5,4 +5,7 @@
 
 <script setup lang="ts">
 console.log('👋 This message is being logged by "App.vue", included via Vite')
+window.store.twitch.getAccessToken().then((result) => {
+  console.log(result)
+})
 </script>

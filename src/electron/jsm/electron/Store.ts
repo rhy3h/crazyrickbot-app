@@ -20,6 +20,22 @@ class Store extends ElectronStore <IStore> {
       schema
     })
   }
+
+  setTwitchAccessToken (accessToken: string) {
+    this.set('twitch', {
+      accessToken
+    })
+
+    if (accessToken !== this.getTwitchAccessToken()) {
+      throw new Error('Set Twitch Access Token Failed')
+    }
+  }
+
+  getTwitchAccessToken () {
+    const twitch: Twitch = this.get('twitch')
+
+    return twitch.accessToken
+  }
 }
 
 export { Store }

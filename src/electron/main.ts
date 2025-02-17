@@ -10,6 +10,8 @@ import { Store } from '@/electron/jsm/electron/Store'
 import { TwitchLoginWindow } from './jsm/window/TwitchLoginWindow'
 import { MainWindow } from '@/electron/jsm/window/MainWindow'
 
+import { StoreIpcMain } from '@/electron/ipcMain/storeIpcMain'
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit()
@@ -43,10 +45,14 @@ const createWindow = () => {
 
   const store: Store = createStore()
 
-  const onLogin = (code: string) => {
-    console.log(code)
+  new StoreIpcMain(mainWindow, store)
+
+  if (!store.getTwitchAccessToken()) {
+    const onLogin = (code: string) => {
+      store.setTwitchAccessToken(code)
+    }
+    new TwitchLoginWindow(onLogin)
   }
-  new TwitchLoginWindow(onLogin)
 }
 
 // This method will be called when Electron has finished
