@@ -13,6 +13,7 @@ export default defineConfigWithVueTs(
   {
     rules: {
       '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
       'no-undef': 'off',
       'no-new': 'off'
     }
