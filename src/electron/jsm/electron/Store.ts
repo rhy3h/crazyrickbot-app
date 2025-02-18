@@ -1,4 +1,5 @@
 import ElectronStore, { Schema } from 'electron-store'
+import { encryptString, decryptString } from '@/electron/jsm/electron/crypt'
 
 const schema: Schema<IStore> = {
   twitch: {
@@ -22,19 +23,19 @@ class Store extends ElectronStore <IStore> {
   }
 
   setTwitchAccessToken (accessToken: string) {
+    accessToken = encryptString(accessToken)
+
     this.set('twitch', {
       accessToken
     })
-
-    if (accessToken !== this.getTwitchAccessToken()) {
-      throw new Error('Set Twitch Access Token Failed')
-    }
   }
 
   getTwitchAccessToken () {
     const twitch: Twitch = this.get('twitch')
 
-    return twitch.accessToken
+    const accessToken = decryptString(twitch.accessToken)
+
+    return accessToken
   }
 }
 
