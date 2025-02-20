@@ -11,6 +11,7 @@ import { TwitchLoginWindow } from './jsm/window/TwitchLoginWindow'
 import { MainWindow } from '@/electron/jsm/window/MainWindow'
 
 import { StoreIpcMain } from '@/electron/ipcMain/storeIpcMain'
+import { TwitchAPIIpcMain } from '@/electron/ipcMain/twitchAPIIpcMain'
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -46,6 +47,7 @@ const createWindow = () => {
   const store: Store = createStore()
 
   new StoreIpcMain(mainWindow, store)
+  new TwitchAPIIpcMain(mainWindow, store)
 
   if (!store.getTwitchAccessToken()) {
     const onLogin = (code: string) => {
