@@ -31,6 +31,19 @@ import './index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import PrimeVue from 'primevue/config'
+import Aura from '@primevue/themes/aura'
+import ToastService from 'primevue/toastservice'
+
+const app = createApp(App)
+
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura
+  }
+})
+app.use(ToastService)
+
+app.mount('#app')
 
 console.log('👋 This message is being logged by "renderer.ts", included via Vite')
